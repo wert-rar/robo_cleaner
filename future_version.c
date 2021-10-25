@@ -15,6 +15,11 @@ typedef struct {
     int  length;
 }coords_array;
 
+//constants
+float  diameter = 63; // wheel diameter in mm
+float robot_angle = 0; // robot rotation relative to coords
+float wheel_l =  0; // length of wheel
+float pi  = 3.14;
 coords_array get_coords()
 {
     int length = 6;
