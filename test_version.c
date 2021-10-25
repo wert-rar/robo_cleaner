@@ -68,16 +68,14 @@ float move_to_next_coord(int c_x,int c_y,int n_x,int n_y,float r_angle)
 	float off_y = (float)(n_y - c_y);
 
 	float distance = get_distance(off_x,off_y);
-
-	// turn the robot in the direction to next coord
 	float  angle = (float)get_angle(off_x,off_y,distance);
+
 	// change angle of robot
 	r_angle = angle - r_angle;
+
 	rotate(r_angle);
+	move(distance);
 
-
-
-	move(distance);	// move the robot to next coord
 	return angle;
 }
 
