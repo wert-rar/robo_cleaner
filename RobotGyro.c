@@ -7,6 +7,8 @@ float robot_angle = 0; // robot rotation relative to coords
 float wheel_l =  diameter * pi; // length of wheel
 float  pi = 3.14;
 
+
+// angle between current and next robot position
 float get_angle(float off_x,float off_y,float distance)
 {
     // in this case distance will be hypotenuse, so we can find angle using th
@@ -39,12 +41,15 @@ float get_angle(float off_x,float off_y,float distance)
     return 0;
 }
 
+
+// distance between current and next robot position
 float get_distance(int off_x,int off_y)
 {
 	return sqrtf(off_x*off_x + off_y*off_y);
 }
 
 
+// rotate robot to current angle
 void rotate(float angle)
 {
 	resetGyro(gyroSensor);
@@ -70,15 +75,18 @@ void rotate(float angle)
 
 }
 
+
+// move robot to next position
 void move(float distance)
 {
 	resetMotorEncoder(leftMotor);
 
-	while(getMotorEncoder(leftMotor)<360*(distance/63*3.14))
+	while(getMotorEncoder(leftMotor)<360*(distance/wheel_l))
 	{
 		setMultipleMotors(50,leftMotor,rightMotor);
 	}
 }
+
 
 float move_to_next_coord(int c_x,int c_y,int n_x,int n_y,float r_angle)
 {
