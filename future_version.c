@@ -30,6 +30,34 @@ float get_angle(vector offset,float distance)
 {   
     // in this case distance will be hypotenuse so we can find angle using this
     return (float)(asinf(offset.x/distance)/3.14f)*180;
+    // in this case distance will be hypotenuse, so we can find angle using th
+    if (offset.x  > 0 && offset.y > 0){
+        return acosf(off_x / distance) / pi * 180;
+    }
+    else if (offset.x > 0 && offset.y < 0){
+        return -acosf(off_x / distance) / pi * 180;
+    }
+    else if ( offset.x < 0 && offset.y > 0){
+        return 180 - acosf(off_y / distance) / pi * 180;
+    }
+    else if (offset.x < 0 && offset.y < 0){
+        return -(90 + acosf(offset.y / distance) / pi * 180);
+    }
+    else if (offset.x == 0 && offset.y < 0){
+        return -90;
+    }
+    else if (offset.x == 0 && offset.y > 0){
+        return 90;
+    }
+    else if (offset.y == 0 && offset.x < 0) {
+        return -180;
+    }
+    else {
+        if (offset.y == 0 && offset.x > 0) {
+            return 0;
+        };
+    }
+    return 0;
 }
 
 float get_distance(vector offset)
