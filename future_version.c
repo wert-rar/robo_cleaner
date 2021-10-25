@@ -103,15 +103,13 @@ void move_to_next_coord(vector current, vector next)
    
    float distance = get_distance(offset);
    float angle = get_angle(offset,distance);
-   
+
+   robot_angle = angle - robot_angle; // merge global angle of robot and current
    //angle = (angle <0) ? angle + robot_angle : angle - robot_angle;
-   rotate(angle);
-   
-   // change angle of robot
-   robot_angle = angle;
-   
-   // move the robot to next coord
-   move(distance);
+   rotate(robot_angle);
+
+   robot_angle = angle; // change angle of robot
+   move(distance);      // move the robot to next coord
 }
 
 
