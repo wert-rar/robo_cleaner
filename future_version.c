@@ -3,48 +3,48 @@
 
 typedef struct  
 {
-    int x;
-    int y;
+    float x;
+    float y;
 } vector;
 
-// robot rotathion reliative to coords
+// robot rotation relative to coords
 float robot_angle = 0;
-float wheel_l =     
+float wheel_l =  0;
 float get_angle(vector offset,float distance)
 {   
     // in this case distance will be hypotenuse so we can find angle using this
-    return (asin(offset.x/distance)/3.14f)*180;
+    return (float)(asinf(offset.x/distance)/3.14f)*180;
 }
 
 float get_distance(vector offset)
 {   
-    return sqrt(offset.x*offset.x + offset.y*offset.y);
+    return sqrtf(offset.x*offset.x + offset.y*offset.y);
 }
 
 
 void rotate(float angle)
 {
-    resetGyro(gyroSensor);
+    //resetGyro(gyroSensor);
     if(angle < 0)
     {
-        SetMotorSpeed(leftMotor,50);
-        SetMotorSpeed(rightMotor,-50);
+        //SetMotorSpeed(leftMotor,50);
+        //SetMotorSpeed(rightMotor,-50);
         
     }
     if(angle > 0)
     {
-        SetMotorSpeed(leftMotor,50);
-        SetMotorSpeed(rightMotor,-50);
+        // SetMotorSpeed(leftMotor,50);
+        //SetMotorSpeed(rightMotor,-50);
     }
     
 }
 
 void move(float distance) 
 {
-    SetMotorSpeed(leftMotor,50);
-    SetMotorSpeed(rightMotor,50);
-    resetGyro(GyroSencor);
-    while(GetMotorEncoder(leftMotor) < distance / wheel_l)
+//    SetMotorSpeed(leftMotor,50);
+//    SetMotorSpeed(rightMotor,50);
+//    resetGyro(GyroSencor);
+//    while(GetMotorEncoder(leftMotor) < distance / wheel_l)
 }
 
 void move_to_next_coord(vector current, vector next)
