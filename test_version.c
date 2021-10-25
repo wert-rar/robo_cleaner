@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 float  pi = 3.14;
+
 float get_angle(float off_x,float off_y,float distance)
 {
 	// in this case distance will be hypotenuse, so we can find angle using th
@@ -56,10 +57,12 @@ void rotate(float angle)
 
 }
 
+
 void move(float distance)
 {
 	printf("distance =  %f  \n",distance);
 }
+
 
 float move_to_next_coord(int c_x,int c_y,int n_x,int n_y,float r_angle)
 {
