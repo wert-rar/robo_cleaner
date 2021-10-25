@@ -113,12 +113,17 @@ void move_to_next_coord(vector current, vector next)
 }
 
 void move_by_coords(vector coords[], int len)
+void move_by_coords(coords_array coordsArray)
 {
     vector robot_pos = coords[0];
     for(int i = 1;i<len;i++)
+    vector robot_pos = coordsArray.coords[0];
+    for(int i = 1;i<coordsArray.length;i++)
     {
         move_to_next_coord(robot_pos, coords[i]);
         robot_pos = coords[i];
+        move_to_next_coord(robot_pos, coordsArray.coords[i]);
+        robot_pos = coordsArray.coords[i];
     }
 }
 
@@ -129,5 +134,7 @@ int main()
     vector coords[6] = { {0,0},{0,1},{1,2},{2,2},{2,3},{1,5}};
 
     move_by_coords(coords,6);
+    coords_array  nav = get_coords();
+    move_by_coords(nav);
     return 0;
 }
