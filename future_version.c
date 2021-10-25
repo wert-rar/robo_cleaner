@@ -10,6 +10,17 @@ typedef struct
 // robot rotation relative to coords
 float robot_angle = 0;
 float wheel_l =  0;
+typedef struct {
+    vector coords[];
+    int  length;
+}coords_array;
+
+coords_array get_coords()
+{
+    int length = 6;
+    vector coords[6] =  { {0,0},{0,1},{1,2},{2,2},{2,3},{1,5}};
+    return {coords,length};
+}
 float get_angle(vector offset,float distance)
 {   
     // in this case distance will be hypotenuse so we can find angle using this
